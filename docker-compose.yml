@@ -23,5 +23,10 @@ services:
     links:
       - "db"
       - "mail"
+    environment:
+      EMAIL_HOST: oremail.powernukkit.org
+      EMAIL_HOST_PORT: 587
+      EMAIL_HOST_USER: changeme@powernukkit.org
+      EMAIL_HOST_PASSWORD: changeme
     volumes:
       - .:/app

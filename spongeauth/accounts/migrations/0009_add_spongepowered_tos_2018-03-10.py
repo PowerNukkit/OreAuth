@@ -11,7 +11,7 @@ def create_tos(apps, schema_editor):
     tos = TermsOfService(
         name="SpongePowered Terms of Service (2018-03-10)",
         tos_date=datetime.date(2018, 3, 10),
-        tos_url="https://docs.spongepowered.org/stable/en/about/tos.html",
+        tos_url="https://powernukkit.org/terms",
         current_tos=True,
     )
     tos.save(using=db_alias)

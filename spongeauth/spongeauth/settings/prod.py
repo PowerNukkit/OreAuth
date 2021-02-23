@@ -11,8 +11,8 @@ DEBUG = False
 
 SECRET_KEY = os.environ["SECRET_KEY"]
 
-DEFAULT_FROM_EMAIL = "admin@powernukkit.org"
-SERVER_EMAIL = "admin@powernukkit.org"
+DEFAULT_FROM_EMAIL = "auth@powernukkit.org"
+SERVER_EMAIL = "auth@powernukkit.org"
 
 SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_HTTPONLY = True
@@ -22,8 +22,8 @@ CSRF_COOKIE_HTTPONLY = True
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
-EMAIL_HOST = "oremail.powernukkit.org"
-EMAIL_PORT = 587
+EMAIL_HOST = os.environ["EMAIL_HOST"]
+EMAIL_PORT = os.environ["EMAIL_HOST_PORT"]
 EMAIL_HOST_USER = os.environ["EMAIL_HOST_USER"]
 EMAIL_HOST_PASSWORD = os.environ["EMAIL_HOST_PASSWORD"]
 
