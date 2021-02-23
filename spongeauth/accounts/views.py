@@ -126,7 +126,7 @@ def _send_verify_email(request, user):
     msg_html = render_to_string("accounts/verify/email.html", template_kwargs)
     msg_text = render_to_string("accounts/verify/email.txt", template_kwargs)
     send_mail(
-        "[Sponge] Confirm your email address", msg_text, "auth@powernukkit.org", [user.email], html_message=msg_html
+        "[Ore - PowerNukkit] Confirm your email address", msg_text, "auth@powernukkit.org", [user.email], html_message=msg_html
     )
 
 
@@ -146,7 +146,7 @@ def _send_forgot_email(request, user):
     }
     msg_html = render_to_string("accounts/forgot/email.html", template_kwargs)
     msg_text = render_to_string("accounts/forgot/email.txt", template_kwargs)
-    send_mail("[Sponge] Reset your password", msg_text, "admin@spongepowered.org", [user.email], html_message=msg_html)
+    send_mail("[Ore - PowerNukkit] Reset your password", msg_text, "auth@powernukkit.org", [user.email], html_message=msg_html)
 
 
 def _send_change_email(request, user, new_email):
@@ -169,7 +169,7 @@ def _send_change_email(request, user, new_email):
     msg_html = render_to_string("accounts/change_email/email.html", template_kwargs)
     msg_text = render_to_string("accounts/change_email/email.txt", template_kwargs)
     send_mail(
-        "[Sponge] Confirm your new email address",
+        "[Ore - PowerNukkit] Confirm your new email address",
         msg_text,
         "auth@powernukkit.org",
         [new_email],
@@ -182,7 +182,7 @@ def _send_email_changed_email(request, user, old_email):
     msg_html = render_to_string("accounts/change_email/confirmation_email.html", template_kwargs)
     msg_text = render_to_string("accounts/change_email/confirmation_email.txt", template_kwargs)
     send_mail(
-        "[Sponge] Your email address has been changed",
+        "[Ore - PowerNukkit] Your email address has been changed",
         msg_text,
         "auth@powernukkit.org",
         [old_email],
