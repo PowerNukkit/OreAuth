@@ -203,7 +203,7 @@ def test_send_verify_email(mock_token_generator, mock_send_mail, mock_render_to_
     user = factories.UserFactory.build()
     views._send_verify_email(request, user)
     mock_send_mail.assert_called_once_with(
-        "[Ore - PowerNukkit] Confirm your email address",
+        "[Ore] Confirm your email address",
         "accounts/verify/email.txt",
         "auth@powernukkit.org",
         [user.email],
@@ -226,7 +226,7 @@ def test_send_forgot_email(mock_token_generator, mock_send_mail, mock_render_to_
     user = factories.UserFactory.build()
     views._send_forgot_email(request, user)
     mock_send_mail.assert_called_once_with(
-        "[Ore - PowerNukkit] Reset your password",
+        "[Ore] Reset your password",
         "accounts/forgot/email.txt",
         "auth@powernukkit.org",
         [user.email],
@@ -249,7 +249,7 @@ def test_send_change_email(mock_token_generator, mock_send_mail, mock_render_to_
     user = factories.UserFactory.build()
     views._send_change_email(request, user, "new-email@example.com")
     mock_send_mail.assert_called_once_with(
-        "[Ore - PowerNukkit] Confirm your new email address",
+        "[Ore] Confirm your new email address",
         "accounts/change_email/email.txt",
         "auth@powernukkit.org",
         ["new-email@example.com"],
@@ -272,7 +272,7 @@ def test_send_email_changed_email(mock_send_mail, mock_render_to_string):
     user = factories.UserFactory.build()
     views._send_email_changed_email(request, user, "old-email@example.com")
     mock_send_mail.assert_called_once_with(
-        "[Ore - PowerNukkit] Your email address has been changed",
+        "[Ore] Your email address has been changed",
         "accounts/change_email/confirmation_email.txt",
         "auth@powernukkit.org",
         ["old-email@example.com"],
