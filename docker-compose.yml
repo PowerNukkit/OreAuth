@@ -18,6 +18,7 @@ services:
       - "8025:8025"
   redis:
     image: redis:6.0.6
+    command: redis-server --requirepass changeme
   app:
     build: .
     ports:
@@ -28,7 +29,7 @@ services:
       - "redis"
     environment:
       EMAIL_HOST_USER: email@username.com
-      EMAIL_HOST_PASSWORD: "SenhaDoEmail"
+      EMAIL_HOST_PASSWORD: "PasswordForEmail"
       EMAIL_HOST: smtp.for.email.com
       EMAIL_HOST_PORT: 587
       SECRET: changeme
@@ -41,6 +42,7 @@ services:
       DJANGO_SETTINGS_SKIP_LOCAL: "True"
       REDIS_HOST: redis
       REDIS_PORT: 6379
+      REDIS_PASSWORD: changeme
       REDIS_DEFAULT_TIMEOUT: 300
       DEBUG: "True"
     volumes:

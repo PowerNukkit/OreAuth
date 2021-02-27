@@ -82,7 +82,7 @@ MEDIA_ROOT = os.path.join(PARENT_ROOT, "public_html", "media")
 ACCOUNTS_AVATAR_CHANGE_GROUPS = ["dummy", "Ore_Organization"]
 
 # Redis queue settings.
-RQ_QUEUES = {"default": {"HOST": os.environ["REDIS_HOST"], "PORT": os.environ["REDIS_PORT"], "DB": 0, "DEFAULT_TIMEOUT": os.environ["REDIS_DEFAULT_TIMEOUT"]}}
+RQ_QUEUES = {"default": {"HOST": os.environ["REDIS_HOST"], "PORT": os.environ["REDIS_PORT"], "PASSWORD": os.environ["REDIS_PASSWORD"], "DB": 0, "DEFAULT_TIMEOUT": os.environ["REDIS_DEFAULT_TIMEOUT"]}}
 
 if not os.environ.get("DJANGO_SETTINGS_SKIP_LOCAL", False):
     try:
