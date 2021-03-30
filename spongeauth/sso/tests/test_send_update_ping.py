@@ -33,7 +33,7 @@ def test_send_update_ping(settings):
             mc_username="meep",
             gh_username="meeep",
             irc_nick="XxXmeepXxX",
-            discord_id="foobar#1234",
+            discord_tag="foobar#1234",
         )
 
         groups = {
@@ -94,7 +94,7 @@ def test_send_update_ping_better(settings):
             mc_username="meep",
             gh_username="meeep",
             irc_nick="XxXmeepXxX",
-            discord_id="foobar#1234",
+            discord_tag="foobar#1234",
         )
         user.groups.set([excluded_group, in_group, in_internal_group])
 

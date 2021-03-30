@@ -19,7 +19,7 @@ BAD_EXAMPLES = [
 def test_validate_username(test_input, expected):
     got = set()
     try:
-        accounts.models.validate_discord_id(test_input)
+        accounts.models.validate_discord_tag(test_input)
     except django.core.exceptions.ValidationError as err:
         for suberr in err.error_list:
             got.add(suberr.code)
@@ -30,9 +30,9 @@ def test_validate_username(test_input, expected):
 def test_validate_username_model(test_input, expected):
     got = set()
     try:
-        user = accounts.tests.factories.UserFactory.build(discord_id=test_input)
+        user = accounts.tests.factories.UserFactory.build(discord_tag=test_input)
         user.clean_fields()
     except django.core.exceptions.ValidationError as err:
-        for suberr in err.error_dict["discord_id"]:
+        for suberr in err.error_dict["discord_tag"]:
             got.add(suberr.code)
     assert got == set(expected)

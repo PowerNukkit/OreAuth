@@ -58,12 +58,12 @@ class ProfileFieldsMixin(forms.Form):
         required=False,
         help_text=_("Publish your software on GitHub? " "Enter your GitHub username here"),
     )
-    discord_id = forms.CharField(
-        label=_("Discord ID"),
+    discord_tag = forms.CharField(
+        label=_("Discord Tag"),
         max_length=255,
         required=False,
-        help_text=_("You're using Discord?" "Enter your Discord ID here"),
-        validators=[models.validate_discord_id],
+        help_text=_("You're using Discord? " "Enter your Discord Tag here"),
+        validators=[models.validate_discord_tag],
     )
 
 
@@ -137,7 +137,7 @@ class RegisterForm(ProfileFieldsMixin, CoreFieldsMixin, RegistrationMixin, forms
             Field("mc_username"),
             Field("irc_nick"),
             Field("gh_username"),
-            Field("discord_id"),
+            Field("discord_tag"),
         ]
         for field in getattr(self, "tos_fields", {}).keys():
             fields.append(Field(field))
@@ -251,7 +251,7 @@ class ProfileForm(forms.ModelForm):
 
     class Meta:
         model = models.User
-        fields = ["full_name", "mc_username", "irc_nick", "gh_username", "discord_id"]
+        fields = ["full_name", "mc_username", "irc_nick", "gh_username", "discord_tag"]
 
 
 class ChangePasswordForm(forms.Form):

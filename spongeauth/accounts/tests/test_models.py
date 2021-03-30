@@ -58,14 +58,14 @@ class TestUserManager:
             password="exciting",
             full_name="Foo Bar",
             mc_username="bar",
-            discord_id="foobar#1234",
+            discord_tag="foobar#1234",
         )
         assert isinstance(user, models.User)
         assert user.username == "foo"
         assert user.email == "foo@example.com"
         assert user.full_name == "Foo Bar"
         assert user.mc_username == "bar"
-        assert user.discord_id == "foobar#1234"
+        assert user.discord_tag == "foobar#1234"
         assert not user.is_admin
 
         assert user.password != "exciting"
