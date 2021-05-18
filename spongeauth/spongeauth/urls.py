@@ -30,7 +30,7 @@ from core.views import index, admin_login_redirect
 
 from accounts.views import avatar_for_user
 
-admin.site.site_header = admin.site.site_title = admin.site.index_title = "SpongeAuth"
+admin.site.site_header = admin.site.site_title = admin.site.index_title = "OreAuth"
 
 urlpatterns = [
     url(r"^admin/login/", admin_login_redirect),

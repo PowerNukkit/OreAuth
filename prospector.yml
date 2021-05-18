@@ -19,7 +19,7 @@ pep8:
   disable:
     - E203
   options:
-    max-line-length: 120
+    max-line-length: 125
 
 mccabe:
   run: false

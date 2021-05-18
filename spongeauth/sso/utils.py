@@ -28,7 +28,7 @@ def make_payload(user, nonce, exclude_groups=None):
         "custom.user_field_1": user.mc_username,
         "custom.user_field_2": user.irc_nick,
         "custom.user_field_3": user.gh_username,
-        "custom.user_field_4": user.discord_id,
+        "custom.user_field_4": user.discord_tag,
         "admin": user.is_admin,
         "moderator": user.is_admin or user.is_staff,
         "add_groups": ",".join(add_groups),

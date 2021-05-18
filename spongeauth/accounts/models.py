@@ -21,9 +21,11 @@ def validate_username(username):
     errs = []
     if len(username) < 3:
         errs.append(ValidationError(_("Username must be at least 3 characters long."), code="username_min_length"))
-    if re.search(r"[^\w.-]", username):
+    if re.search(r"[^\w\.\-]", username):
         errs.append(
-            ValidationError(_("Username must only include numbers, letters, and underscores."), code="username_charset")
+            ValidationError(
+                _("Username must only include numbers, letters, hyphens, dots, and underscores."), code="username_charset"
+            )
         )
     if re.search(r"\W", username[0]):
         errs.append(
@@ -47,9 +49,9 @@ def validate_username(username):
         raise ValidationError(errs)
 
 
-def validate_discord_id(discord_id):
-    if not re.match(r"^(.+)#(\d{4})$", discord_id):
-        raise ValidationError("The Discord ID has to match the pattern username#1234.", "wrong_pattern")
+def validate_discord_tag(discord_tag):
+    if not re.match(r"^(.+)#(\d{4})$", discord_tag):
+        raise ValidationError("The Discord Tag has to match the pattern username#1234.", "wrong_pattern")
 
 
 class Group(models.Model):
@@ -96,8 +98,8 @@ class User(AbstractBaseUser):
     mc_username = models.CharField(max_length=255, blank=True, null=True, verbose_name=_("Minecraft Username"))
     irc_nick = models.CharField(max_length=255, blank=True, null=True, verbose_name=_("IRC Nick"))
     gh_username = models.CharField(max_length=255, blank=True, null=True, verbose_name=_("GitHub Username"))
-    discord_id = models.CharField(
-        max_length=255, blank=True, null=False, verbose_name=_("Discord ID"), validators=[validate_discord_id]
+    discord_tag = models.CharField(
+        max_length=255, blank=True, null=False, verbose_name=_("Discord Tag"), validators=[validate_discord_tag]
     )
 
     joined_at = models.DateTimeField(auto_now_add=True, null=False, blank=False)

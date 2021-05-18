@@ -7,12 +7,12 @@ from .base import *
 GIT_REPO_ROOT = os.path.dirname(BASE_DIR)
 PARENT_ROOT = os.path.dirname(GIT_REPO_ROOT)
 
-DEBUG = False
+DEBUG = os.environ["DEBUG"]
 
 SECRET_KEY = os.environ["SECRET_KEY"]
 
-DEFAULT_FROM_EMAIL = "admin@spongepowered.org"
-SERVER_EMAIL = "admin@spongepowered.org"
+DEFAULT_FROM_EMAIL = "auth@powernukkit.org"
+SERVER_EMAIL = "auth@powernukkit.org"
 
 SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_HTTPONLY = True
@@ -22,8 +22,8 @@ CSRF_COOKIE_HTTPONLY = True
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
-EMAIL_HOST = "mail.spongepowered.org"
-EMAIL_PORT = 587
+EMAIL_HOST = os.environ["EMAIL_HOST"]
+EMAIL_PORT = os.environ["EMAIL_HOST_PORT"]
 EMAIL_HOST_USER = os.environ["EMAIL_HOST_USER"]
 EMAIL_HOST_PASSWORD = os.environ["EMAIL_HOST_PASSWORD"]
 
@@ -48,7 +48,16 @@ TEMPLATES = [
     }
 ]
 
-DATABASES["default"]["ATOMIC_REQUESTS"] = True
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.environ["DB_NAME"],
+        "USER": os.environ["DB_USER"],
+        "PASSWORD": os.environ["DB_PASSWORD"],
+        "HOST": os.environ["DB_HOST"],
+        "ATOMIC_REQUESTS": True,
+    }
+}
 
 SSO_ENDPOINTS = {}
 for k, v in os.environ.items():
@@ -71,6 +80,9 @@ STATIC_ROOT = os.path.join(PARENT_ROOT, "public_html", "static")
 MEDIA_ROOT = os.path.join(PARENT_ROOT, "public_html", "media")
 
 ACCOUNTS_AVATAR_CHANGE_GROUPS = ["dummy", "Ore_Organization"]
+
+# Redis queue settings.
+RQ_QUEUES = {"default": {"HOST": os.environ["REDIS_HOST"], "PORT": os.environ["REDIS_PORT"], "PASSWORD": os.environ["REDIS_PASSWORD"], "DB": 0, "DEFAULT_TIMEOUT": os.environ["REDIS_DEFAULT_TIMEOUT"]}}
 
 if not os.environ.get("DJANGO_SETTINGS_SKIP_LOCAL", False):
     try:

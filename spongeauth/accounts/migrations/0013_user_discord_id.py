@@ -11,9 +11,9 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AddField(
             model_name="user",
-            name="discord_id",
+            name="discord_tag",
             field=models.CharField(
-                blank=True, max_length=255, validators=[accounts.models.validate_discord_id], verbose_name="Discord ID"
+                blank=True, max_length=255, validators=[accounts.models.validate_discord_tag], verbose_name="Discord Tag"
             ),
         )
     ]
